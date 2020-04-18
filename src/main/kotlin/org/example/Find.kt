@@ -17,7 +17,7 @@ class Find {
         
         @JvmStatic fun main(args: Array<String>) {
             val f = Find()
-            val parser = CmdLineParser(f)
+            val parser = CmdLineParser(this)
             try {
                 parser.parseArgument()
             } catch (e: CmdLineException) {

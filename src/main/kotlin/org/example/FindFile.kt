@@ -12,13 +12,11 @@ class FindFile {
         if (Files.exists(p)) result.add(directory + "\\" + filename)
         if (r) {
             val allFiles = Paths.get(directory)
-            if (allFiles.toFile().isDirectory) {
-                val allDir = listOf<String>(directory)
-                for (i in allDir) {
-                    val check = Paths.get(directory + "\\" +  i)
-                    if (check.toFile().isDirectory) {
-                        result.addAll(findFile(true, directory + "\\" + i, filename))
-                    }
+            val allDir = allFiles.toList()
+            for (i in allDir) {
+                val check = Paths.get(directory + "\\" + i)
+                if (check.toFile().isDirectory) {
+                    result.addAll(findFile(true, directory + "\\" + i, filename))
                 }
             }
         }
