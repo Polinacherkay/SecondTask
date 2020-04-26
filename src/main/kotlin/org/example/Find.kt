@@ -14,12 +14,12 @@ class Find {
         var directory = ""
         @Argument
         var filename = ""
-        
+
         @JvmStatic fun main(args: Array<String>) {
             val f = Find()
-            val parser = CmdLineParser(this)
+            val parser = CmdLineParser(f)
             try {
-                parser.parseArgument()
+                parser.parseArgument(*args)
             } catch (e: CmdLineException) {
                 System.err
                 return
