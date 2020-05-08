@@ -4,15 +4,16 @@ import org.kohsuke.args4j.Argument
 import org.kohsuke.args4j.CmdLineException
 import org.kohsuke.args4j.CmdLineParser
 import org.kohsuke.args4j.Option
+import kotlin.system.exitProcess
 
 
 class Find {
     companion object {
         @Option(name = "-r")
         var r = false
-        @Option(name = "-d")
+        @Option(name = "-d", required = true)
         var directory = ""
-        @Argument
+        @Argument(required = true)
         var filename = ""
 
         @JvmStatic fun main(args: Array<String>) {
@@ -20,17 +21,13 @@ class Find {
             val parser = CmdLineParser(f)
             try {
                 parser.parseArgument(*args)
-            } catch (e: CmdLineException) {
-                System.err
-                return
+            } catch (e: CmdLineException){
+                System.err.println(e.message)
+                parser.printUsage(System.err)
+                exitProcess(1)
             }
-            if (filename == "" || directory == "") {
-                println("Данные указаны не полностью")
-            } else {
-                val find = FindFile()
-                println(find.findFile(r, directory, filename))
-            }
-            return
+            val find = FindFile()
+            println(find.findFile(r, directory, filename))
         }
     }
 }

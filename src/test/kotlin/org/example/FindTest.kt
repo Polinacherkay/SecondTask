@@ -2,15 +2,17 @@ package org.example
 
 import org.junit.Test
 import kotlin.test.assertEquals
+import java.nio.file.Paths
+import java.nio.file.Path
 
 class FindTest {
     @Test
     fun findFile(){
         val expected =
-            listOf<String>("C:\\Users\\user\\IdeaProjects\\SecondTask\\SecondTask\\input\\empty.txt")
+            setOf<Path>(Paths.get("input\\empty.txt"))
         val find = FindFile()
         val result = find.findFile(true,
-            "C:\\Users\\user\\IdeaProjects\\SecondTask\\SecondTask\\input", "empty.txt")
+            "input", "empty.txt")
         assertEquals(expected, result)
     }
 }
