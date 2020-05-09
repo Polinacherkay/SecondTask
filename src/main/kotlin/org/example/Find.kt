@@ -5,16 +5,17 @@ import org.kohsuke.args4j.CmdLineException
 import org.kohsuke.args4j.CmdLineParser
 import org.kohsuke.args4j.Option
 import kotlin.system.exitProcess
+import java.nio.file.Path
 
 
 class Find {
     companion object {
         @Option(name = "-r")
-        var r = false
+        private var r = false
         @Option(name = "-d", required = true)
-        var directory = ""
+        private lateinit var directory: Path
         @Argument(required = true)
-        var filename = ""
+        private lateinit var filename: Path
 
         @JvmStatic fun main(args: Array<String>) {
             val f = Find()
