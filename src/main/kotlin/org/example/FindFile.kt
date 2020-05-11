@@ -9,7 +9,8 @@ import java.nio.file.Path
 
 class FindFile {
     companion object {
-        @JvmStatic fun findFile(r: Boolean, directory: Path, filename: Path): MutableSet<Path> {
+        @JvmStatic
+        fun findFile(r: Boolean, directory: Path, filename: Path): MutableSet<Path> {
             val result = mutableSetOf<Path>()
             val p = Paths.get(directory.toString(), filename.toString())
             if (Files.exists(p)) result.add(p)
