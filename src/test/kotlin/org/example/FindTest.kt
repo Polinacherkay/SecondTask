@@ -9,15 +9,14 @@ import java.nio.file.Path
 class FindTest {
     @Test
     fun findFile(){
-        val find = FindFile()
         assertEquals(setOf(Paths.get("input" + File.separator + "empty.txt")),
-            find.findFile(false, Paths.get("input"),  Paths.get("empty.txt")))
+            FindFile.findFile(false, Paths.get("input"),  Paths.get("empty.txt")))
         assertEquals(setOf(Paths.get("input" + File.separator + "second" + File.separator + "temp.txt")),
-            find.findFile(true, Paths.get("input"), Paths.get("temp.txt")))
-        assertEquals(setOf<Path>(), find.findFile(false, Paths.get("input"), Paths.get("temp.txt")))
+            FindFile.findFile(true, Paths.get("input"), Paths.get("temp.txt")))
+        assertEquals(setOf<Path>(), FindFile.findFile(false, Paths.get("input"), Paths.get("temp.txt")))
         assertEquals(setOf(Paths.get("input" + File.separator + "empty.txt"),
             Paths.get("input" + File.separator + "second" + File.separator + "empty.txt"),
             Paths.get("input" + File.separator + "second" + File.separator + "third" + File.separator + "empty.txt")),
-            find.findFile(true, Paths.get("input"), Paths.get("empty.txt")))
+            FindFile.findFile(true, Paths.get("input"), Paths.get("empty.txt")))
     }
 }

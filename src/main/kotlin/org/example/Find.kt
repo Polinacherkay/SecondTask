@@ -6,13 +6,14 @@ import org.kohsuke.args4j.CmdLineParser
 import org.kohsuke.args4j.Option
 import kotlin.system.exitProcess
 import java.nio.file.Path
+import java.nio.file.Paths
 
 
 class Find {
     companion object {
         @Option(name = "-r")
         private var r = false
-        @Option(name = "-d", required = true)
+        @Option(name = "-d")
         private lateinit var directory: Path
         @Argument(required = true)
         private lateinit var filename: Path
@@ -27,8 +28,11 @@ class Find {
                 parser.printUsage(System.err)
                 exitProcess(1)
             }
-            val find = FindFile()
-            println(find.findFile(r, directory, filename))
+            if (directory == null) {
+              directory = Paths.get("").toAbsolutePath()
+            }
+            val find = FindFile.findFile(r, directory, filename)
+            println(find)
         }
     }
 }
